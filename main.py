@@ -68,5 +68,15 @@ async def info(ctx):
     else:
         await ctx.send("Anda tidak memiliki Pokémon!")
         
+@bot.command()
+async def feed(ctx):
+    author = ctx.author.name
+    if author in Pokemon.pokemons:
+        pokemon = Pokemon.pokemons[author]
+        response = await pokemon.feed()
+        await ctx.send(response)
+    else:
+        await ctx.send("Anda tidak memiliki Pokémon!")
+        
 # Running the bot
 bot.run(token)
